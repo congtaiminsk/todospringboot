@@ -74,6 +74,11 @@ public class WorkController {
         return new ResponseEntity<>(work.get(), HttpStatus.OK);
     }
 
+    /**
+     * create new work
+     * @param workForm form to create
+     * @return new work response if success
+     */
     @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE,
         MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<WorkEntity> create(@RequestBody @Valid WorkForm workForm) {
@@ -87,4 +92,31 @@ public class WorkController {
         return new ResponseEntity<>(workEntity, HttpStatus.CREATED);
     }
 
+    /**
+     * update work
+     * @param id id of work
+     * @param workForm form to update
+     * @return updated work if success
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {
+        MediaType.APPLICATION_JSON_VALUE,
+        MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<WorkEntity> update(@PathVariable("id") Integer id,
+                                             @RequestBody @Valid WorkForm workForm) {
+
+        Optional<WorkEntity> currentWork = workService.findById(id);
+
+        if (!currentWork.isPresent()) {
+            throw new WorkNotFoundException("Invalid work id : " + id);
+        }
+
+        BeanUtils.copyProperties(workForm, currentWork.get());
+        try {
+            workService.save(currentWork.get());
+        } catch (DataAccessException ex) {
+            throw new WorkExistException("This work is already exist");
+        }
+
+        return new ResponseEntity<>(currentWork.get(), HttpStatus.OK);
+    }
 }
