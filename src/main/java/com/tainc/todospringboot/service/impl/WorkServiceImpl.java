@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class WorkServiceImpl implements WorkService {
 
@@ -19,5 +21,8 @@ public class WorkServiceImpl implements WorkService {
         return workRepository.findAll(page);
     }
 
-
+    @Override
+    public Optional<WorkEntity> findById(Integer id) {
+        return workRepository.findById(id);
+    }
 }
