@@ -3,11 +3,13 @@ package com.tainc.todospringboot.controller;
 import com.tainc.todospringboot.exeptions.WorkExistException;
 import com.tainc.todospringboot.exeptions.WorkNotFoundException;
 import com.tainc.todospringboot.form.WorkForm;
+import com.tainc.todospringboot.model.Messages;
 import com.tainc.todospringboot.model.WorkEntity;
 import com.tainc.todospringboot.service.WorkService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -118,5 +120,22 @@ public class WorkController {
         }
 
         return new ResponseEntity<>(currentWork.get(), HttpStatus.OK);
+    }
+
+    /**
+     * destroy work
+     * @param id work's id
+     * @return message and status response
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {
+        MediaType.APPLICATION_JSON_VALUE,
+        MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Messages> delete(@PathVariable("id") Integer id) {
+        try {
+            workService.remove(id);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new WorkNotFoundException("Invalid work id : " + id);
+        }
+        return new ResponseEntity<>(new Messages("Delete Work Successfull", true), HttpStatus.OK);
     }
 }
