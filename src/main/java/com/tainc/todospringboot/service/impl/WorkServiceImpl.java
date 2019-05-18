@@ -32,4 +32,10 @@ public class WorkServiceImpl implements WorkService {
     public WorkEntity save(WorkEntity workEntity) {
         return workRepository.save(workEntity);
     }
+
+    @Override
+    @Transactional
+    public void remove(Integer id) {
+        workRepository.deleteById(id);
+    }
 }

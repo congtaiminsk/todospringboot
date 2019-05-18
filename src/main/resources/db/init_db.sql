@@ -11,3 +11,6 @@ create table works (
 
 ALTER TABLE todomanager.works
 ADD UNIQUE (NAME);
+
+
+INSERT INTO `todomanager`.`works` (`ID`, `NAME`, `STARTING_DATE`, `ENDING_DATE`, `STATUS`) VALUES ('8', 'TODO 8', '2019-05-17 09:52:00', '2019-05-17 09:52:00', 'DOING');
