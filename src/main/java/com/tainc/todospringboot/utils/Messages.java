@@ -1,4 +1,4 @@
-package com.tainc.todospringboot.model;
+package com.tainc.todospringboot.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
