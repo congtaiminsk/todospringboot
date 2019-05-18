@@ -38,5 +38,4 @@ public class WorkController {
         }
         return new ResponseEntity<>(workPage, HttpStatus.OK);
     }
-
 }
