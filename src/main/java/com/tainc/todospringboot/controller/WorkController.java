@@ -3,7 +3,7 @@ package com.tainc.todospringboot.controller;
 import com.tainc.todospringboot.exeptions.WorkExistException;
 import com.tainc.todospringboot.exeptions.WorkNotFoundException;
 import com.tainc.todospringboot.form.WorkForm;
-import com.tainc.todospringboot.model.Messages;
+import com.tainc.todospringboot.utils.Messages;
 import com.tainc.todospringboot.model.WorkEntity;
 import com.tainc.todospringboot.service.WorkService;
 import org.springframework.beans.BeanUtils;
