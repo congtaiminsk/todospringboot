@@ -10,4 +10,5 @@ public interface WorkService {
 
     Page<WorkEntity> findAll(Pageable page);
     Optional<WorkEntity> findById(Integer id);
+    WorkEntity save(WorkEntity workEntity);
 }

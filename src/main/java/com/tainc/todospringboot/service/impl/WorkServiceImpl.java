@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -24,5 +25,11 @@ public class WorkServiceImpl implements WorkService {
     @Override
     public Optional<WorkEntity> findById(Integer id) {
         return workRepository.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public WorkEntity save(WorkEntity workEntity) {
+        return workRepository.save(workEntity);
     }
 }
