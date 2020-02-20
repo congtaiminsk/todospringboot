@@ -1,7 +1,7 @@
 package com.tainc.todospringboot.constants;
 
 public enum Status {
-    ACBDFEGJHCONGTYTNHHMOTTHANHVEN,
+    /*ACBDFEGJHCONGTYTNHHMOTTHANHVEN,*/
     DOING,
     COMPLETE;
 }
