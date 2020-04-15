@@ -30,7 +30,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/works")
 public class WorkController {
-    // function 1
     // function 2
     // function 3
     // function 4
